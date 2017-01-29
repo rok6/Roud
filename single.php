@@ -2,24 +2,24 @@
 
 	<main id="main" class="site-main" role="main">
 
-			<?php
-				/* Start the Loop */
-				while ( have_posts() ) : the_post();
+		<?php
+			/* Start the Loop */
+			while ( have_posts() ) : the_post();
 
-					get_template_part( 'template-parts/post/content', '' );
+				get_template_part( 'template-parts/post/content', '' );
 
-					if ( comments_open() || get_comments_number() ) :
-						comments_template();
-					endif;
+				if ( comments_open() || get_comments_number() ) :
+					comments_template();
+				endif;
 
-					the_posts_pagination( array(
-					  'prev_text' => '<span>' . __( 'Previous page' ) . '</span>',
-					  'next_text' => '<span>' . __( 'Next page' ) . '</span>',
-					  'before_page_number' => '<span class="meta-nav">' . __( 'Page' ) . ' </span>',
-					) );
+				the_posts_pagination( array(
+				  'prev_text' => '<span>' . __( 'Previous page' ) . '</span>',
+				  'next_text' => '<span>' . __( 'Next page' ) . '</span>',
+				  'before_page_number' => '<span class="meta-nav">' . __( 'Page' ) . ' </span>',
+				) );
 
-				endwhile;
-			?>
+			endwhile;
+		?>
 
 	</main><!-- #main -->
 

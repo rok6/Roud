@@ -6,6 +6,7 @@
 <audio id="play-se" preload="auto">
   <source src="<?php echo $RTags::$assets_path; ?>sound/short.wav" type="audio/wav">
 </audio>
+
 <?php wp_footer(); ?>
 
 </body>

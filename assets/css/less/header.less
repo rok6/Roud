@@ -1,0 +1,53 @@
+// main: style.less
+
+/*	Header
+ *-----------------------------------------------------------*/
+#global-header {
+  position: absolute;
+  width: 250px;
+  #logo {
+  	.site-title {
+      text-align: center;
+      padding: 10rem 0;
+      border-bottom: 1px solid #eee;
+      a {
+        color: #333;
+    		font-size: 6rem;
+        font-weight: bold;
+      }
+  	}
+  }
+  nav {
+    ul {
+      li {
+        a {
+          padding: 1em 1.5em;
+          display: block;
+          color: #333;
+      		font-size: 1.5em;
+          border-bottom: 1px solid #eee;
+        }
+        ul {
+          margin-left: 3em;
+        }
+      }
+    }
+  }
+}
+
+#topbar {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	font-size: 1.2em;
+	padding: 0.5em 1.5em;
+	background: #f2f2f2;
+	.widget-area {
+		&.topbar-left {
+
+		}
+		&.topbar-right {
+
+		}
+	}
+}

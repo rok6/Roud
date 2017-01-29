@@ -1,0 +1,143 @@
+// main: style.less
+
+#post-comments {
+  margin: 0.5em 0.5em 0;
+  padding: 3em;
+  font-size: 1.7em;
+  background: #fff;
+  .comments-title {
+    border-bottom: 5px solid #eee;
+  }
+  ol.comment-list {
+    border-bottom: 5px solid #eee;
+    & > .children {
+      border-bottom: 1em dotted #eee;
+    }
+    .children {
+      padding-left: 3em;
+    }
+    li {
+      border-bottom: 1px solid #ddd;
+      margin: 1.5em 0;
+      &:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+      }
+      article.comment-body {
+        position: relative;
+        footer {
+          padding: 0 1em;
+          margin-left: 25px;
+          .comment-author {
+            img {
+              position: absolute;
+              right: 100%;
+              margin-right: -25px;
+            }
+            cite.fn {
+              font-style: normal;
+            }
+          }
+          .comment-metadata {
+            font-size: 0.75em;
+            a > time {
+
+            }
+            .edit-link {
+              a {
+
+              }
+            }
+          }
+        }
+        .comment-content{
+          padding: 1.5em 1em;
+          font-size: 0.9em;
+        }
+        .reply {
+          position: absolute;
+          right: 100%; top: 50px;
+          width: 50px;
+          text-align: center;
+          margin: 0.5em 0;
+          a {
+            display: block;
+            white-space: nowrap;
+            background: #777;
+            color: #ccc;
+            font-size: 0.75em;
+            line-height: 2em;
+            border-radius: 3px;
+          }
+        }
+      }
+
+    }//li
+  }
+  /**
+   * コメントフォーム
+   */
+  #respond {
+    margin: 1.5em 0;
+    h3#reply-title {
+      //padding-left: 4em;
+      font-size: 1.4em;
+      line-height: 2em;
+      & > a {
+        display: inline-block;
+        color: #ddd;
+        background: #333;
+        padding: 0 1em;
+        border-radius: 6px;
+      }
+      small {
+        margin-left: 1.5em;
+        border-bottom: 1px dashed #333;
+      }
+    }
+    form {
+      .comment-form-comment{
+        textarea {
+          height: 5em;
+        }
+      }
+      .comment-form-comment,
+      .comment-form-author {
+        display: flex;
+        //align-items: center;
+        margin: 1em 0;
+        label {
+          display: block;
+          width: 4em;
+          padding: 0.6em;
+        }
+        textarea,
+        input[type="text"] {
+          display: block;
+          width: 100%;
+          outline: none;
+          padding: 0.6em;
+          border-radius: 6px;
+          border: 1px solid #333;
+          box-shadow: none;
+          text-shadow: none;
+        }
+      }
+      .form-submit {
+        text-align: center;
+        input[type="submit"] {
+          display: inline-block;
+          cursor: pointer;
+          color: #ddd;
+          margin: 1.5em 0;
+          padding: 0.5em 2em;
+          border: 0;
+          border-radius: 6px;
+          background-color: #222;
+          box-shadow: none;
+          text-shadow: none;
+        }
+      }
+    }
+  }
+}

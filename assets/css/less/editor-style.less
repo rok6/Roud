@@ -1,0 +1,31 @@
+//out: ../editor-style.css, sourcemap: false, compress: true
+@import url( 'normalize.less');
+@import url( 'init.less');
+
+body,
+html {
+    width: 100%;
+    height: auto;
+}
+
+html {
+    padding: 1.5em;
+}
+
+body {
+    font-size: 1.5em;
+
+    &::after {
+        display: block;
+        border-top: 1px dashed #aaa;
+        background: #ddd;
+        color: #777;
+        content: 'END';
+        line-height: 2em;
+        text-align: center;
+    }
+}
+
+.editor-area {
+    @import url( 'post-tags.less');
+}

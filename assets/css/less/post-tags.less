@@ -1,0 +1,212 @@
+// main: post.less
+
+p {
+  color: #555;
+  margin: 0 0 1.5em;
+  line-height: 1.75em;
+  letter-spacing: 0.05em;
+  a {
+    //text-decoration: underline;
+    font-weight: bold;
+  }
+}
+
+strong {
+  font-weight: bold;
+  font-size: 1.05em;
+}
+em {
+  font-style: normal;
+  background: linear-gradient( transparent 45%, rgba(255,255,0,0.7) 45%, rgba(255,255,0,0.7) 90%, transparent 90% );
+}
+
+cite {
+  //default - italic
+}
+
+sup, sub {
+
+}
+acronym, abbr {
+  cursor: help;
+  text-decoration: none;
+  border-bottom: 1px #767676 dotted;
+}
+
+//プレフォーマット
+pre, code {
+  font-family: "Consolas", "Courier New", "Osaka-mono", monospace;
+}
+code {
+  color: #333;
+  background: #ddd;
+}
+pre {
+  max-width: 100%;
+  overflow: auto;
+  padding: 1.5em;
+  margin-bottom: 3em;
+  color: #ddd;
+  background: #333;
+  //プログラムソース　ex. 「for, while, if, function」等
+ code {
+
+ }
+ //変数部分
+ var {
+
+ }
+ //ユーザーのキーボードによる動作部分 ex.「Enter」等
+ kbd {
+
+ }
+ //実行・出力結果　ex. 「console.log('true'); → "true"」等
+ samp {
+
+ }
+}
+
+// headding
+h2, h3, h4, h5, h6 {
+  margin: 2em 0 0.75em;
+  padding: 0.25em 0;
+}
+h2 {
+  color: #555;
+  font-size: 1.7em;
+  border-bottom: 5px solid #ccc;
+}
+h3 {
+  font-size: 1.4em;
+  margin: 1.5em 0;
+  padding: 0.25em 0.5em;
+  border-left: 5px solid #ddd;
+}
+h4 {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+h5 {
+  font-size: 1.1em;
+}
+h6 {
+  font-size: 1em;
+  font-weight: bold;
+}
+h2:first-child,
+h3:first-child,
+h4:first-child,
+h5:first-child,
+h6:first-child {
+  padding-top: 0;
+}
+
+/**
+ * List
+ */
+dl {
+  dt {
+    font-weight: bold;
+  }
+  dd {
+    margin: 0 1.5em 1.5em;
+  }
+}
+
+ol, ul {
+  li {
+    margin-bottom: 0.5em;
+  }
+}
+
+ol {
+  counter-reset: order_list;
+  margin: 0 0 1.5em;
+  li {
+    padding-left: 1.5em;
+    &::before {
+      counter-increment: order_list;
+      content: counter(order_list);
+      margin-left: -1.5em;
+      margin-right: 1em;
+    }
+  }
+}
+
+ul {
+    margin: 0 0 1.5em;
+  li {
+    display: list-item;
+  }
+}
+
+/**
+ * Table of contents
+ */
+.toc-list {
+  margin: 1em 0;
+  padding: 0.5em 1.5em;
+  border: 1px solid #ddd;
+  background: #fcfcfc;
+  p.toc-title {
+    margin: 1em;
+    font-size: 1.2em;
+  }
+  & > ul {
+    li {
+      line-height: 2em;
+      margin-bottom: 0;
+      a {
+        display: inline-block;
+        .number {
+
+        }
+      }
+      // list-children
+      ul {
+        margin: 0;
+        padding-left: 1em;
+      }
+    }
+    & > li {
+      margin-bottom: 0.5em;
+    }
+  }
+}
+
+//Tables
+table {
+    border-collapse: collapse;
+    margin: 0 0 1.5em;
+    width: 100%;
+    border-top: 1px dashed #ddd;
+    border-right: 1px dashed #ddd;
+  tr {
+    border-bottom: 1px solid #ddd;
+  }
+  th, td {
+    border-left: 1px dashed #ddd;
+  }
+  th {
+    padding: 0.4em;
+    text-align: left;
+    background: #eee;
+  }
+  td {
+    padding: 0.4em;
+  }
+}// end Table
+
+blockquote {
+  margin: 1.5em;
+  padding: 1.5em 3em;
+  color: #555;
+  background: #eee;
+  font-size: 1.5em;
+  font-weight: bold;
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@import url('post-form.less');

@@ -1,0 +1,92 @@
+//main: post-tags.less
+
+ //form
+ form {
+   label {
+     margin: 0 0 0.5em;
+     font-weight: bold;
+     cursor: pointer;
+   }
+   label[for="file"] {
+     display: block;
+     padding: 2em;
+     color: #777;
+     background: rgba(0,0,0,0.1);
+     border-radius: 5px;
+     text-align: center;
+     input[type="file"] {
+       display: none;
+     }
+   }
+   input[type="text"],
+   input[type="email"],
+   input[type="url"],
+   input[type="password"],
+   input[type="search"],
+   input[type="number"],
+   input[type="tel"],
+   input[type="range"],
+   input[type="date"],
+   input[type="month"],
+   input[type="week"],
+   input[type="time"],
+   input[type="datetime"],
+   input[type="datetime-local"],
+   input[type="color"],
+   textarea {
+     display: block;
+     width: 100%;
+     color: #666;
+     padding: 0.6em;
+     border: 1px solid #bbb;
+     border-radius: 3px;
+     background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)) #fff;
+   }
+   input:-webkit-autofill, textarea:-webkit-autofill,
+   select:-webkit-autofill {
+     background-color: transparent;
+     -webkit-box-shadow: 0 0 0px 1000px white inset;
+   }
+   button,
+   input[type="button"],
+   input[type="submit"],
+   input[type="reset"] {
+     display: inline-block;
+     cursor: pointer;
+     padding: 1em 2em;
+     font-size: 1em;
+     font-weight: 800;
+     line-height: 1;
+     box-shadow: none;
+     text-shadow: none;
+   }
+   button,
+   input[type="button"],
+   input[type="submit"] {
+     color: #ddd;
+     background-color: #222;
+     border: 0;
+   }
+   input[type="reset"] {
+     color: #222;
+     background-color: #ccc;
+     border: 1px solid rgba(0,0,0,0.1);
+   }
+   button, input, select, textarea {
+     line-height: 1.5;
+     outline: none;
+   }
+   select {
+     height: 3em;
+     max-width: 100%;
+   }
+   button,
+   input[type="button"],
+   input[type="submit"],
+   input[type="reset"],
+   input[type="file"] {
+     transition-property: all;
+     transition-duration: 150ms;
+     transition-timing-function: ease;
+   }
+ }// end form

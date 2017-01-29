@@ -1,0 +1,83 @@
+// main: style.less
+
+/**	Single - Article
+ *-----------------------------------------------------------*/
+ article.post {
+   margin: 0 0.5em;
+   padding: 3em;
+   font-size: 1.5em;
+   background: #fff;
+  .entry-header {
+    h1 {
+      color: #555;
+      font-size: 3rem;
+    }
+  }
+  .entry-body {
+    @import url('post-tags.less');
+  }
+
+ }
+/**	Archive-list
+ *-----------------------------------------------------------*/
+section.archive {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  li.post.list {
+    color: #333;
+    font-size: 1.5em;
+    width: 33.334%;
+    & > div {
+      margin: 0 0.5em 1em;
+      background-color: #fff;
+      box-shadow: 1px 1px 1px #dadada;
+      & > a {
+        display: block;
+        h2.title {
+          color: #333;
+          padding: 1em;
+          font-size: 1em;
+          font-weight: bold;
+          &:hover {
+            color: #aaa;
+          }
+        }
+        .image {
+          min-height: 150px;
+          background: #aaa;
+        }
+      }
+    }
+    .content {
+      padding: 1em;
+      font-size: 0.9em;
+      line-height: 1.75em;
+      border-bottom: 1px solid #eee;
+    }
+    .data {
+      display: flex;
+      font-size: 0.75em;
+      & > * {
+        width: 33%;
+        text-align: center;
+        padding: 1em 0.5em;
+          display: inline-block;
+      }
+      span.author {
+        border-right: 1px solid #eee;
+      }
+      .published {
+        &::before {
+          content: 'on: ';
+        }
+      }
+      .updated {
+        &::before {
+          content: 'up: ';
+        }
+      }
+    }
+  }
+}

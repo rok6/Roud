@@ -87,7 +87,7 @@ class Roud_CMB2 extends Roud
     $cmb->add_field(array(
       'name'			=> __('description', self::$domain),
       'id'        => $prefix . 'desc',
-      'type'			=> 'textarea_medium',
+      'type'			=> 'textarea_small',
     	'default_cb'	=> array( $this, 'field_meta_set_desc' ),
       'attributes'	=> array(
           //'rows' => 3,
@@ -140,8 +140,9 @@ class Roud_CMB2 extends Roud
 		$cmb->add_group_field( $group_field_id, array(
 			'name'     => __('url', self::$domain),
 			'id'       => $prefix . 'url',
-			'type'     => 'ex_url',
-			//'allow'    => array('url', 'attachment'),
+			'type'     => 'text_url',
+			'default'  => 'http://',
+			'allow'    => array('url', 'attachment'),
 		));
 
 		$cmb->add_group_field( $group_field_id, array(
@@ -156,60 +157,5 @@ class Roud_CMB2 extends Roud
 		));
 
 	}
-
-  /**
-   * Render Address Field
-   */
-  function cmb2_render_ex_url_field_callback( $field, $value, $object_id, $object_type, $field_type ) {
-
-      // make sure we specify each part of the value we need.
-      $value = wp_parse_args( $value, array(
-          'url_select' => '',
-          'url_type_text'      => '',
-      ) );
-
-      ?>
-      <div class="alignleft"><p><label for="<?php echo $field_type->_id( '_url_select' ); ?>'">Type Select</label></p>
-          <?php echo $field_type->select( array(
-              'name'    => $field_type->_name( '[url_select]' ),
-              'id'      => $field_type->_id( '_url_select' ),
-              'options' => $this->cmb2_get_url_select_options( $value['url_select'] ),
-              'desc'    => '',
-          ) ); ?>
-      </div>
-      <div class="alignleft"><p><label for="<?php echo $field_type->_id( '_url_type_text' ); ?>">Address 1</label></p>
-          <?php echo $field_type->input( array(
-              'name'  => $field_type->_name( '[url_type_text]' ),
-              'id'    => $field_type->_id( '_url_type_text' ),
-              'value' => $value['url_type_text'],
-              'desc'  => '',
-              'show_on_cb'  => array($this, 'cmb2_only_show_for_type_text'),
-          ) ); ?>
-      </div>
-      <br class="clear" />
-      <?php
-      echo $field_type->_desc( true );
-
-  }
-
-  function cmb2_get_url_select_options( $value = false ) {
-    $state_list = array(
-      'text'  => 'Text',
-      'post'  => 'Post',
-      'category'  => 'Category',
-    );
-
-    $state_options = '';
-    foreach ( $state_list as $abrev => $state ) {
-      $state_options .= '<option value="'. $abrev .'" '. selected( $value, $abrev, false ) .'>'. $state .'</option>';
-    }
-
-    return $state_options;
-  }
-
-  function cmb2_only_show_for_type_text( $cmb ) {
-    $status = get_post_meta( $cmb->object_id(), 'nav_url', 1 );
-    return 'external' === $status;
-  }
 
 }

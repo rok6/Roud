@@ -10,7 +10,10 @@ class Roud_Themes extends Roud
         add_action('wp_enqueue_scripts', array( $this, 'load_scripts' ));
         add_action('widgets_init', array( $this, 'add_widgets_support' ));
         add_action('wp_footer', array( $this, 'include_svg_icons'), 9999);
+        add_action('admin_menu', array( $this, 'custom_nav_menu_move'));
 
+        add_filter('custom_menu_order', '__return_true');
+        add_filter('menu_order', array( $this, 'custom_menu_order' ));
         //add_filter( 'esc_html', array( $this, 'rename_post_formats' ) );
         add_filter('excerpt_length', array( $this, 'excerpt_length' ), 9999);
         add_filter('excerpt_more', array( $this, 'excerpt_more' ));
@@ -39,6 +42,42 @@ class Roud_Themes extends Roud
           //inline-style
           'recent_comments_style',
         ));
+    }
+
+    function custom_nav_menu_move()
+    {
+      remove_submenu_page( 'themes.php','nav-menus.php' );
+      add_menu_page(
+        __( 'メニュー', self::$domain ),    //$page_title
+        __( 'メニュー', self::$domain ),    //$menu_title
+        'edit_theme_options',       //$capability
+        'nav-menus.php',        //$menu_slug
+        '',
+        null,
+        5
+      );
+    }
+
+    function custom_menu_order( $menu_order )
+    {
+      $menu = array();
+
+      foreach ( $menu_order as $key => $val ) {
+        if ( 0 === strpos( $val, 'edit.php' ) )
+          break;
+
+        $menu[] = $val;
+        unset( $menu_order[$key] );
+      }
+
+      foreach ( $menu_order as $key => $val ) {
+        if ( 0 === strpos( $val, 'edit.php' ) ) {
+          $menu[] = $val;
+          unset( $menu_order[$key] );
+        }
+      }
+
+      return array_merge( $menu, $menu_order );
     }
 
     /**

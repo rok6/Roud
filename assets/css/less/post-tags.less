@@ -3,6 +3,7 @@
 p {
   color: #555;
   margin: 0 0 1.5em;
+  padding: 0 1em;
   line-height: 1.75em;
   letter-spacing: 0.05em;
   a {
@@ -37,54 +38,79 @@ acronym, abbr {
 pre, code {
   font-family: "Consolas", "Courier New", "Osaka-mono", monospace;
 }
-code {
-  color: #333;
-  background: #ddd;
-}
 pre {
   max-width: 100%;
   overflow: auto;
-  padding: 1.5em;
-  margin-bottom: 3em;
+  padding: 1em 1.5em;
+  margin: 1.5em 0;
   color: #ddd;
   background: #333;
+  strong {
+    color: #fff;
+  }
   //プログラムソース　ex. 「for, while, if, function」等
- code {
+  code {
+    color: inherit;
+  }
+  //変数部分
+  var {
 
- }
- //変数部分
- var {
+  }
+  //ユーザーのキーボードによる動作部分 ex.「Enter」等
+  kbd {
 
- }
- //ユーザーのキーボードによる動作部分 ex.「Enter」等
- kbd {
+  }
+  //実行・出力結果　ex. 「console.log('true'); → "true"」等
+  samp {
 
- }
- //実行・出力結果　ex. 「console.log('true'); → "true"」等
- samp {
-
- }
+  }
 }
 
 // headding
 h2, h3, h4, h5, h6 {
   margin: 2em 0 0.75em;
-  padding: 0.25em 0;
 }
 h2 {
-  color: #555;
   font-size: 1.7em;
-  border-bottom: 5px solid #ccc;
+  font-weight: bold;
+  margin-bottom: 1.5em;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  // &::before {
+  //   content: '';
+  //   display: block;
+  //   width: 1.5em; height: 1.5em;
+  //   border-top: 4px solid #333;
+  // }
+  &::before, &::after {
+    content: '';
+    display: block;
+    height: 0.25em;
+    background: #eee;
+  }
+  &::before {
+    width: 4.5rem;
+    margin-left: -4.5rem;
+    margin-right: 2rem;
+  }
+  &::after {
+    width: 100%;
+    margin-left: 2.5rem;
+    margin-right: -4.5rem;
+  }
 }
 h3 {
+  text-decoration: underline;
   font-size: 1.4em;
-  margin: 1.5em 0;
-  padding: 0.25em 0.5em;
-  border-left: 5px solid #ddd;
+  margin: 2.5em 0 1.5em;
 }
 h4 {
   font-size: 1.2em;
   font-weight: bold;
+  &::before {
+    content: '– ';
+  }
 }
 h5 {
   font-size: 1.1em;
@@ -123,10 +149,13 @@ ol {
   counter-reset: order_list;
   margin: 0 0 1.5em;
   li {
-    padding-left: 1.5em;
+    display: list-item;
+    padding-left: 2.0em;
     &::before {
       counter-increment: order_list;
       content: counter(order_list);
+      display: inline-block;
+      width: 0.5em; height: 0.5em;
       margin-left: -1.5em;
       margin-right: 1em;
     }
@@ -137,6 +166,26 @@ ul {
     margin: 0 0 1.5em;
   li {
     display: list-item;
+    padding-left: 2.0em;
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 0.5em; height: 0.5em;
+      margin-left: -1.5em;
+      margin-right: 1em;
+      background: #666;
+    }
+  }
+}
+
+.toc-list {
+  ul {
+    li {
+      padding-left: 0;
+      &::before {
+        display: none;
+      }
+    }
   }
 }
 

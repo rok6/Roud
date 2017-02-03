@@ -6,6 +6,8 @@ if (post_password_required()) {
 }
 ?>
 
+<?php if ( comments_open() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
+
 <div id="post-comments" class="comments-area">
 
 	<?php
@@ -36,9 +38,10 @@ if (post_password_required()) {
             'next_text' => '<span class="screen-reader-text">' . __('Next') . '</span>',
         ));
 
-        comment_form();
-
       endif;
-    ?>
+
+      comment_form();
+
+endif; ?>
 
 </div><!-- #comments -->

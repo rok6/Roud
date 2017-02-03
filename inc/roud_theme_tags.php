@@ -139,7 +139,7 @@ class Roud_Tags extends Roud
     {
       $GLOBALS['comment'] = $comment;
 
-      $comment_link = get_edit_comment_link() ? '<a class="edit-link" href="%9$s">' . __('編集') . '</a>' : '';
+      $comment_link = get_edit_comment_link() ? '<a class="edit-link" href="%10$s">' . __('編集') . '</a>' : '';
       $format = <<< COMMENT_LIST_STYLES
 
 <li id="comment-%2\$s" class="comment-stem">
@@ -157,6 +157,9 @@ class Roud_Tags extends Roud
       <p>
         %3\$s
       </p>
+    </div>
+    <div class="reply">
+      %11\$s
     </div>
   </article>
 </li>
@@ -191,14 +194,18 @@ COMMENT_LIST_STYLES;
      */
     function custom_comment_form( $comment_args )
     {
+      $commenter = wp_get_current_commenter();
+      $req = get_option( 'require_name_email' );
+      $aria_req = ( $req ? ' aria-required="true"' : '' );
+
       /**
        * コメントフォーム：名前
        */
       $author_html = <<< INPUT_AUTHOR_NAME
 
     <p class="comment-form-author">
-        <label for="author">%1\$s</label>
-        <input id="author" name="author" type="text" placeholder="%2\$s" />
+        <label for="author">%1\$s%3\$s</label>
+        <input id="author" name="author" type="text" value="%5\$s" placeholder="%2\$s"%4\$s />
     </p>
 
 INPUT_AUTHOR_NAME;
@@ -209,26 +216,31 @@ INPUT_AUTHOR_NAME;
       $content_html = <<< INPUT_CONTENT
 
     <p class="comment-form-comment">
-        <label for="comment">%1\$s</label>
+        <label for="comment">%1\$s<span class="required">*</span></label>
         <textarea id="comment" name="comment" maxlength="65525" aria-required="true" required="required"></textarea>
     </p>
 
 INPUT_CONTENT;
 
       $comment_args['fields'] = array(
-          'author' => sprintf( $author_html, __( 'Name' ), __('無記入の場合匿名になります') ),
+          'author' => sprintf( $author_html, __( 'Name' ), __('無記入の場合匿名になります'), ( $req ? ' <span class="required">*</span>' : '' ), $aria_req, esc_attr( $commenter['comment_author'] ) ),
           'email'  => '',
           'url'    => '',
       );
-      $comment_args['title_reply']             = 'コメントする';
-      //$comment_args['title_reply_to']        = ''; //返信を押した後、誰に返信するかを表示。
-      $comment_args['comment_notes_before']    = '';
-      $comment_args['comment_notes_after']     = '';
-      $comment_args['must_log_in']             = ''; //コメント投稿にログインが必要な場合表示。
-      $comment_args['logged_in_as']            = ''; //ログイン中、ログインしていることを表示。
-      $comment_args['comment_field']           = sprintf( $content_html, __( '本文' ) );
-      $comment_args['cancel_reply_link']       = __( 'コメントをキャンセル' );
-      $comment_args['label_submit']            = __( 'コメントを送信' );
+      $comment_args['title_reply']          = __( 'Leave a Reply' );
+      $comment_args['title_reply_to']       = __( 'Leave a Reply to %s' ); //返信を押した後、誰に返信するかを表示。
+      $comment_args['comment_notes_before'] = ''; //__( '* が付いている欄は必須項目です' ) __( 'Your email address will not be published.' ) . ( $req ? $required_text : '' )
+      $comment_args['comment_notes_after']  = '';
+      $comment_args['must_log_in']          = '';
+        /*
+          sprintf( __( 'You must be <a href="%s">logged in</a> to post a comment.' ),
+            wp_login_url( apply_filters( 'the_permalink', get_permalink( $post_id ) ) )
+          )
+        */
+      $comment_args['logged_in_as']      = ''; //ログイン中、ログインしていることを表示。
+      $comment_args['comment_field']     = sprintf( $content_html, __( '本文' ) );
+      $comment_args['cancel_reply_link'] = __( 'コメントをキャンセル' );
+      $comment_args['label_submit']      = __( 'コメントを送信' );
 
       return $comment_args;
   }

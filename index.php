@@ -14,12 +14,6 @@
 
           endwhile;
 
-          the_posts_pagination( array(
-            'prev_text' => '<span class="screen-reader-text">' . __( 'Previous page' ) . '</span>',
-            'next_text' => '<span class="screen-reader-text">' . __( 'Next page' ) . '</span>',
-            'before_page_number' => '<span class="meta-nav">' . __( 'Page' ) . ' </span>',
-          ) );
-
         else :
 
           get_template_part( 'template-parts/post/content', 'none' );
@@ -28,6 +22,15 @@
         ?>
 
       </ul>
+
+      <?php
+      the_posts_pagination( array(
+        'prev_text' => '<span class="screen-reader-text">' . __( 'Previous page' ) . '</span>',
+        'next_text' => '<span class="screen-reader-text">' . __( 'Next page' ) . '</span>',
+        'before_page_number' => '<span class="meta-nav">' . __( 'Page' ) . ' </span>',
+      ) );
+      ?>
+      
     </section>
   </main>
 

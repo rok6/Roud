@@ -162,18 +162,9 @@ class Roud_Themes extends Roud
     public function add_widgets_support()
     {
         register_sidebar(array(
-	        'name'          => __('Topbar Left', self::$domain),
-	        'id'            => 'topbar-1',
-	        'description'   => __('画面上部のバー、左側に表示します。', self::$domain),
-	        'before_widget' => '<section id="%1$s" class="widget %2$s">',
-	        'after_widget'  => '</section>',
-	        'before_title'  => '<p class="widget-title">',
-	        'after_title'   => '</p>',
-	    ));
-        register_sidebar(array(
-	        'name'          => __('Topbar Right', self::$domain),
-	        'id'            => 'topbar-2',
-	        'description'   => __('画面上部のバー、右側に表示します。', self::$domain),
+	        'name'          => __('Topbar', self::$domain),
+	        'id'            => 'topbar',
+	        'description'   => __('画面上部のバーに表示します。', self::$domain),
 	        'before_widget' => '<section id="%1$s" class="widget %2$s">',
 	        'after_widget'  => '</section>',
 	        'before_title'  => '<p class="widget-title">',
@@ -203,7 +194,7 @@ class Roud_Themes extends Roud
      */
     public function excerpt_length($length)
     {
-        return 60; // default = 110(55)
+        return 45; // default = 110(55)
     }
 
     /**

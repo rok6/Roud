@@ -251,13 +251,13 @@ INPUT_CONTENT;
     switch ( $key )
     {
       case 'author':
-        return printf( __( '<span class="author">%1$s</span>', self::$domain ),
+        return printf( __( '<span class="author">%1$s</span>' . PHP_EOL, self::$domain ),
           get_the_author()
         );
       break;
 
       case 'author_link':
-        return printf( __( '<a class="author" href="%1$s">%2$s</a>', self::$domain ),
+        return printf( __( '<a class="author" href="%1$s">%2$s</a>' . PHP_EOL, self::$domain ),
           esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
           get_the_author()
         );
@@ -267,7 +267,7 @@ INPUT_CONTENT;
         $time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time>';
         if( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) )
         {
-          $time_string .= PHP_EOL . '<time class="entry-date updated" datetime="%3$s">%4$s</time>';
+          $time_string .= PHP_EOL . "\t" . '<time class="entry-date updated" datetime="%3$s">%4$s</time>' . PHP_EOL;
         }
         echo sprintf( $time_string,
           get_the_date( DATE_W3C ),
@@ -276,6 +276,14 @@ INPUT_CONTENT;
           get_the_modified_date()
         );
       break;
+
+			case 'category':
+				// $cat = get_the_category();
+				// $cat_id = $cat[0]->term_id;
+				// $cat_name = $cat[0]->cat_name;
+				// $cat_slug  = $cat[0]->category_nicename;
+				echo get_the_category_list();
+				break;
 
       default:
       break;

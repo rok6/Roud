@@ -1,13 +1,10 @@
 <?php
-if ( ! ( is_active_sidebar( 'topbar-1' ) || is_active_sidebar( 'topbar-2' ) ) )
+if(! ( is_active_sidebar( 'topbar' ) ) )
 	return;
 ?>
 
 <aside id="topbar" role="complementary">
 	<div class="widget-area topbar-left">
-	<?php dynamic_sidebar( 'topbar-1' ); ?>
-	</div>
-	<div class="widget-area topbar-left">
-	<?php dynamic_sidebar( 'topbar-2' ); ?>
+	<?php dynamic_sidebar( 'topbar' ); ?>
 	</div>
 </aside>

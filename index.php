@@ -1,6 +1,8 @@
 <?php get_header(); ?>
 
   <main>
+		
+		<?php get_sidebar(); ?>
 
     <section class="archive">
       <ul>
@@ -30,7 +32,7 @@
         'before_page_number' => '<span class="meta-nav">' . __( 'Page' ) . ' </span>',
       ) );
       ?>
-      
+
     </section>
   </main>
 

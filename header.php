@@ -13,25 +13,26 @@
 
 <body>
 
-  <?php get_sidebar(); ?>
+	<header id="global-header">
 
-  <header id="global-header">
+	<div id="logo">
+		<?php if (! is_single()) : ?>
+		<h1 class="site-title"><a href="<?php echo get_home_url(); ?>"><?php $RTags->siteinfo('title'); ?></a></h1>
+		<?php else : ?>
+		<div class="site-title"><a href="<?php echo get_home_url(); ?>"><?php $RTags->siteinfo('title'); ?></a></div>
+		<?php endif; ?>
+	</div>
 
-    <div id="logo">
-      <?php if (! is_single()) : ?>
-      <h1 class="site-title"><a href="<?php echo get_home_url(); ?>"><?php $RTags->siteinfo('title'); ?></a></h1>
-      <?php else : ?>
-      <div class="site-title"><a href="<?php echo get_home_url(); ?>"><?php $RTags->siteinfo('title'); ?></a></div>
-      <?php endif; ?>
-    </div>
+	<nav role="navigation" aria-label="<?php _e('Top Menu'); ?>">
+		<?php
+			wp_nav_menu(array(
+				'theme_location'  => 'top',
+				'container'       => false,
+				'depth'						=> 3,
+				'items_wrap'      => '<ul>%3$s</ul>'. PHP_EOL,
+				'walker'          => new Roud_Walker_Nav_Menu,
+			));
+		?>
+	</nav>
 
-    <nav role="navigation" aria-label="<?php _e('Top Menu'); ?>">
-      <?php
-        wp_nav_menu(array(
-          'theme_location' => 'top',
-          'menu_id'        => 'top-menu',
-        ));
-      ?>
-    </nav>
-
-  </header>
+	</header>

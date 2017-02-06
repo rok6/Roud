@@ -7,7 +7,7 @@
    padding: 3em;
    max-width: 1200px;
    font-size: 1.5em;
-   background: #fff;
+	 background: #fff;
   .entry-header {
     h1 {
       color: #555;
@@ -25,52 +25,43 @@
 /**	Archive-list
  *-----------------------------------------------------------*/
 section.archive {
-  ul {
+  ul:not(.post-categories) {
     display: flex;
     flex-wrap: wrap;
+		padding: 1em;
+    font-size: 1.5em;
   }
   li.post.list {
     color: #333;
-    font-size: 1.5em;
-    width: 33.334%;
     & > div {
-      margin: 0 0.5em 1em;
-      background-color: #fff;
-      box-shadow: 1px 1px 1px #dadada;
+    	width: 320px;
+      margin: 0 0.5em 0.5em 0;
+	 	 	background: #fff;
       & > a {
         display: block;
         h2.title {
           color: #333;
           padding: 1em;
           font-size: 1em;
-          font-weight: bold;
+					min-height: 5em;
           &:hover {
             color: #aaa;
           }
         }
         .image {
-          min-height: 150px;
-          background: #aaa;
+          height: 320px;
+          background: #666;
         }
       }
     }
-    .content {
-      padding: 1em;
-      font-size: 0.9em;
-      line-height: 1.75em;
-      border-bottom: 1px solid #eee;
-    }
-    .data {
+    .datetime {
       display: flex;
       font-size: 0.75em;
+			border-bottom: 1px solid #eee;
       & > * {
-        width: 33%;
-        text-align: center;
-        padding: 1em 0.5em;
+        width: 50%;
+        padding: 1em 2em;
           display: inline-block;
-      }
-      span.author {
-        border-right: 1px solid #eee;
       }
       .published {
         &::before {
@@ -81,6 +72,32 @@ section.archive {
         &::before {
           content: 'up: ';
         }
+      }
+    }
+    .data {
+      display: flex;
+      font-size: 0.75em;
+      & > * {
+				display: block;
+        padding: 1em 2em;
+          display: inline-block;
+      }
+      .author {
+				width: 30%;
+      }
+      .category {
+				width: 70%;
+				ul.post-categories {
+					display: flex;
+					li::after {
+						content: '';
+						margin-right: 1em;
+					}
+					li:last-child::after {
+						content: '';
+						margin-right: 0;
+					}
+				}
       }
     }
   }

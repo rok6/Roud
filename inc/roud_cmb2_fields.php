@@ -20,46 +20,10 @@ class Roud_CMB2 extends Roud
   function cmb2_add_fields()
   {
 		$this->field_meta();
-		$this->field_navigation();
-
 
     add_filter( 'cmb2_render_ex_url', array($this, 'cmb2_render_ex_url_field_callback'), 10, 5 );
   }
 
-	/**
-	 *
-	 * CMBs Standard
-	 *
-	 * Keys
-	 * =================================================
-	 *
-	 * New Box
-	 * @title //box title
-	 * @id
-	 * @object_types // Array
-	 * @context  //  'normal', 'advanced', or 'side'
-	 * @priority //  'high', 'core', 'default' or 'low'
-	 * @show_names // bool
-	 * @cmb_styles // bool
-	 * @closed // bool
-	 * ...etc
-	 *
-	 * New Fields
-	 * @name
-	 * @id
-	 * @desc
-	 * @type // input type
-	 * @default // default key
-	 * @options // Array(key, value)
-	 * @repeatable // bool
-	 * @save_id // bool
-	 * @allow // ex. array( 'url', 'attachment' )
-	 * @show_on_cb // my_callback[return bool]  ex. return false => hidden
-	 * @on_front //
-	 * @attributes // Array()
-	 * ...etc
-	 *
-	 */
   function field_meta()
   {
     $prefix = 'meta_';
@@ -102,60 +66,5 @@ class Roud_CMB2 extends Roud
       $content = wp_trim_words($content, 98, ' …');
       echo $content;
   }
-
-	/**
-	 * CMB2 - Navigations
-	 */
-  function field_navigation()
-  {
-    $prefix = 'nav_';
-
-    $cmb = new_cmb2_box(array(
-			'title'       => __('Menu list', self::$domain),
-			'id'          =>  $prefix . 'menu_list',
-			'object_types'=> array( 'navs', ),
-			'context'     => 'normal',
-			'priority'    => 'high',
-			'show_names'  => true,
-    ));
-
-		$group_field_id = $cmb->add_field(array(
-			'id'           => $prefix . 'menus',
-			'type'         => 'group',
-			'description'  => '',
-			'options'	=> array(
-				'group_title'   => __('Menu {#}', self::$domain),
-				'add_button'    => 'メニューの追加',
-				'remove_button'	=> 'メニューの削除',
-				'sortable'      => true,
-			),
-		));
-
-		$cmb->add_group_field( $group_field_id, array(
-			'name' => __('link name', self::$domain),
-			'id'   => $prefix . 'name',
-			'type' => 'text_medium',
-		));
-
-		$cmb->add_group_field( $group_field_id, array(
-			'name'     => __('url', self::$domain),
-			'id'       => $prefix . 'url',
-			'type'     => 'text_url',
-			'default'  => 'http://',
-			'allow'    => array('url', 'attachment'),
-		));
-
-		$cmb->add_group_field( $group_field_id, array(
-			'name'     => __('target', self::$domain),
-			'id'       => $prefix . 'target',
-			'type'     => 'radio_inline',
-			'options'  => array(
-				'_self'   => '_self',
-				'_blank'  => '_blank',
-			),
-			'default'	=> '_self',
-		));
-
-	}
 
 }

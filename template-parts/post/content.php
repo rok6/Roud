@@ -3,12 +3,12 @@
 
   <header class="entry-header">
     <?php
-      if ( is_single() ) :
+      if ( is_single() || is_page() ) :
         the_title( '<h1 class="entry-title">', '</h1>' );
       else :
         the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
       endif;
-    _PE(); ?>
+    ?>
   </header>
 
   <?php if ( '' !== get_the_post_thumbnail() && ! is_single() ) : ?>
@@ -17,7 +17,7 @@
 				<?php the_post_thumbnail( 'featured-image' ); ?>
 			</a>
 		</div>
-	<?php endif; _PE(); ?>
+	<?php endif; ?>
 
   <div class="entry-body">
     <?php

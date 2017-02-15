@@ -14,13 +14,14 @@ class Roud {
 	public function __construct() {
 
 	  self::$domain = strtolower( get_class( $this ) );
-	  //self::$assets_path = get_home_url() . '/assets/';
+
 	  self::$assets_path = get_template_directory_uri() . '/assets/';
 
 	  load_theme_textdomain(
       self::$domain,
       get_template_directory() . '/languages'
     );
+
 	}
 
   /**
@@ -28,7 +29,7 @@ class Roud {
    */
 	public static function get_object() {
 		if ( NULL === self::$class_obj ) {
-		 self::$class_obj = new static();
+			self::$class_obj = new static();
 		}
 		return self::$class_obj;
 	}
@@ -38,9 +39,9 @@ class Roud {
    */
   function clean_wp_head( $array ) {
 
-    if ( is_string( $array )  )
+    if( is_string( $array )  )
       $array = array( $array );
-    if ( ! is_array( $array ) )
+    if(! is_array( $array ) )
       return;
 
     foreach( $array as $func ) {
